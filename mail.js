@@ -51,7 +51,6 @@ app.post("/", (req, res) => {
   console.log(firstName, lastName, email);
 
   run();
-  // res.send("Data posted to Mailchimp servers.");
 });
 
 app.post("/failure", function (req, res) {

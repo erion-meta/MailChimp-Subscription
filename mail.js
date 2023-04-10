@@ -17,6 +17,43 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/signUp.html");
 });
 
+app.post("/", (req, res) => {
+  let firstName = req.body.fName;
+  let lastName = req.body.lName;
+  let email = req.body.email;
+  const listId = "defc59a6df";
+
+  const subscribingUser = {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+  };
+
+  const run = async () => {
+    try {
+      const response = await client.lists.addListMember(listId, {
+        email_address: subscribingUser.email,
+        status: "subscribed",
+        merge_fields: {
+          FNAME: subscribingUser.firstName,
+          LNAME: subscribingUser.lastName,
+        },
+      });
+
+      console.log(response);
+      res.sendFile(__dirname + "/success.html");
+    } catch (error) {
+      console.log(error.status);
+      res.sendFile(__dirname + "/failure.html");
+    }
+  };
+
+  console.log(firstName, lastName, email);
+
+  run();
+  // res.send("Data posted to Mailchimp servers.");
+});
+
 app.post("/failure", function (req, res) {
   res.redirect("/");
 });

@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/public", express.static("public"));
 
 client.setConfig({
-  apiKey: "964905e0ac6bef34b38508b8ca686286-us8",
+  apiKey: "1567af8cf63402861be836b7fbc2ed24-us8",
   server: "us8",
 });
 
@@ -57,9 +57,9 @@ app.post("/failure", function (req, res) {
   res.redirect("/");
 });
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`Server is running on port ${3000}`);
 });
 
 /// API Key
-/// 964905e0ac6bef34b38508b8ca686286-us8
+/// 1567af8cf63402861be836b7fbc2ed24-us8
